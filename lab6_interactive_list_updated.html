@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive List Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"] {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NY3SG83NTZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NY3SG83NTZ'); // Replace with your GA ID
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Add Item to List</h2>
+    <input type="text" id="itemInput" placeholder="Enter item name..." />
+    <button onclick="addItem(); gtag('event', 'add_button_click', {event_category: 'interaction'});">Add</button>
+
+    <table id="itemTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Item</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Items will appear here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let itemCount = 0;
+
+    function addItem() {
+      const input = document.getElementById('itemInput');
+      const itemText = input.value.trim();
+
+      if (itemText === '') {
+        alert('Please enter an item.');
+        return;
+      }
+
+      itemCount++;
+
+      const tableBody = document.getElementById('itemTable').getElementsByTagName('tbody')[0];
+      const newRow = tableBody.insertRow();
+
+      const cell1 = newRow.insertCell(0);
+      const cell2 = newRow.insertCell(1);
+
+      cell1.textContent = itemCount;
+      cell2.textContent = itemText;
+
+      input.value = '';
+    }
+  </script>
+</body>
+</html>
